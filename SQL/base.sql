@@ -20,6 +20,46 @@ CREATE TABLE previsions_macroeconomiques (
     FOREIGN KEY (indicateur_id) REFERENCES indicateurs_macroeconomiques(id)
 );
 
+CREATE TABLE secteur_primaire(  
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(250)
+);
+
+CREATE TABLE SP_valeur(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    secp_id INT,
+    taux_croissance DECIMAL(15,2),
+    annee INT,
+    Foreign Key (secp_id) REFERENCES secteur_primaire(id)
+);
+
+CREATE TABLE secteur_secondaire(  
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(250)
+);
+
+CREATE TABLE SS_valeur(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    secs_id INT,
+    taux_croissance DECIMAL(15,2),
+    annee INT,
+    Foreign Key (secs_id) REFERENCES secteur_secondaire(id)
+);
+
+CREATE TABLE secteur_tertiaire(  
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(250)
+);
+
+CREATE TABLE ST_valeur(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    sect_id INT,
+    taux_croissance DECIMAL(15,2),
+    annee INT,
+    Foreign Key (sect_id) REFERENCES secteur_tertiaire(id)
+);
+
+
 --RECETTE
 
 CREATE TABLE categories_recettes (
@@ -173,6 +213,93 @@ INSERT INTO previsions_macroeconomiques (indicateur_id, annee, valeur) VALUES
 (7, 2026, 4853.2), (8, 2026, 5532.7), (9, 2026, 8.3),
 (10, 2026, 13.7), (11, 2026, 11.8);
 
+--SECTEUR PRIMAIRE 
+INSERT INTO secteur_primaire (nom) VALUES
+('Agriculture'),
+('Élevage et pêche'),
+('Sylviculture');
+
+-- Données 2024
+INSERT INTO SP_valeur (secp_id, taux_croissance, annee) VALUES
+(1, 6.0, 2024),    -- Agriculture
+(2, 3.9, 2024),    -- Élevage et pêche
+(3, 1.0, 2024);    -- Sylviculture
+
+-- Données 2025
+INSERT INTO SP_valeur (secp_id, taux_croissance, annee) VALUES
+(1, 9.5, 2025),    -- Agriculture
+(2, 4.0, 2025),    -- Élevage et pêche
+(3, 1.1, 2025);    -- Sylviculture
+
+--SECTEUR SECONDAIRE
+INSERT INTO secteur_secondaire (nom) VALUES
+('Industrie extractive'),
+('Alimentaire, boisson, tabac'),
+('Textile'),
+('Bois, papiers, imprimerie'),
+('Matériaux de construction'),
+('Industrie métallique'),
+('Machine, matériels électriques'),
+('Industries diverses'),
+('Électricité, eau, gaz'),
+('Secteur Secondaire Total');
+
+-- 2024
+INSERT INTO SS_valeur (secs_id, taux_croissance, annee) VALUES
+(1, -20.8, 2024), (2, 0.9, 2024), (3, 31.6, 2024), (4, 0.4, 2024),
+(5, 7.9, 2024), (6, 7.2, 2024), (7, 3.1, 2024), (8, 0.5, 2024),
+(9, 3.9, 2024), (10, -3.3, 2024);
+
+-- 2025
+INSERT INTO SS_valeur (secs_id, taux_croissance, annee) VALUES
+(1, 4.0, 2025), (2, 2.4, 2025), (3, 4.0, 2025), (4, 0.7, 2025),
+(5, 8.0, 2025), (6, 7.3, 2025), (7, 3.2, 2025), (8, 0.6, 2025),
+(9, 4.0, 2025), (10, 3.4, 2025);
+
+--SECTEUR TERTIAIRE 
+INSERT INTO secteur_tertiaire (nom) VALUES
+('BTP'),
+('Commerce, entretiens, réparations'),
+('Hôtel, restaurant'),
+('Transport'),
+('Poste et télécommunication'),
+('Banque, assurance'),
+('Services aux entreprises'),
+('Administration'),
+('Éducation'),
+('Santé'),
+('Services rendus aux ménages'),
+('Secteur Tertiaire Total');
+
+-- Données 2024
+INSERT INTO ST_valeur (sect_id, taux_croissance, annee) VALUES
+(1, 3.2, 2024),
+(2, 4.2, 2024),
+(3, 14.7, 2024),
+(4, 7.0, 2024),
+(5, 13.4, 2024),
+(6, 5.3, 2024),
+(7, 2.3, 2024),
+(8, 1.7, 2024),
+(9, 1.7, 2024),
+(10, 1.8, 2024),
+(11, 1.3, 2024),
+(12, 5.0, 2024);
+
+-- Données 2025
+INSERT INTO ST_valeur (sect_id, taux_croissance, annee) VALUES
+(1, 3.6, 2025),
+(2, 4.3, 2025),
+(3, 14.9, 2025),
+(4, 7.2, 2025),
+(5, 13.7, 2025),
+(6, 6.1, 2025),
+(7, 2.4, 2025),
+(8, 1.9, 2025),
+(9, 1.8, 2025),
+(10, 1.9, 2025),
+(11, 1.4, 2025),
+(12, 5.4, 2025);
 
 --RECETTE 
 INSERT INTO categories_recettes (nom, description) VALUES
@@ -403,4 +530,91 @@ INSERT INTO glossaire (terme, definition) VALUES
 ('Inflation', 'Augmentation générale et durable des prix des biens et services dans une économie.'),
 ('Taux de change', 'Prix d''une devise par rapport à une autre.'),
 ('Assiette fiscale', 'Base sur laquelle un impôt est calculé.');
+
 --CREATION DE VUES
+--PMA 2024
+CREATE OR REPLACE VIEW PMA24 AS (
+SELECT 
+    ima.nom AS indicateur,
+    pma.annee as annee,
+    pma.valeur AS valeur
+FROM indicateurs_macroeconomiques ima 
+JOIN previsions_macroeconomiques pma ON pma.indicateur_id = ima.id
+WHERE pma.annee = 2024);
+
+--PMA 2025
+CREATE OR REPLACE VIEW PMA25 AS (
+SELECT 
+    ima.nom AS indicateur,
+    pma.annee as annee,
+    pma.valeur AS valeur
+FROM indicateurs_macroeconomiques ima 
+JOIN previsions_macroeconomiques pma ON pma.indicateur_id = ima.id
+WHERE pma.annee = 2025);
+
+--PMA 2026
+CREATE OR REPLACE VIEW PMA26 AS (
+SELECT 
+    ima.nom AS indicateur,
+    pma.annee as annee,
+    pma.valeur AS valeur
+FROM indicateurs_macroeconomiques ima 
+JOIN previsions_macroeconomiques pma ON pma.indicateur_id = ima.id
+WHERE pma.annee = 2026);
+
+--SP24
+CREATE OR REPLACE VIEW SP24 AS (
+SELECT SP.nom nom,
+         SV.taux_croissance,
+         SV.annee
+FROM secteur_primaire SP
+JOIN SP_valeur SV ON SP.id = SV.secp_id
+WHERE SV.annee = 2024);
+
+--SP25
+CREATE OR REPLACE VIEW SP25 AS (
+SELECT SP.nom nom,
+         SV.taux_croissance,
+         SV.annee
+FROM secteur_primaire SP
+JOIN SP_valeur SV ON SP.id = SV.secp_id
+WHERE SV.annee = 2025);
+
+--SS24
+CREATE OR REPLACE VIEW SS24 AS (
+SELECT SP.nom nom,
+         SV.taux_croissance,
+         SV.annee
+FROM secteur_secondaire SP
+JOIN SS_valeur SV ON SP.id = SV.secs_id
+WHERE SV.annee = 2024);
+
+--SS25
+CREATE OR REPLACE VIEW SS25 AS (
+SELECT SP.nom nom,
+         SV.taux_croissance,
+         SV.annee
+FROM secteur_secondaire SP
+JOIN SS_valeur SV ON SP.id = SV.secs_id
+WHERE SV.annee = 2025);     
+
+--ST24
+CREATE OR REPLACE VIEW ST24 AS (
+SELECT SP.nom nom,
+         SV.taux_croissance,
+         SV.annee
+FROM secteur_tertiaire SP
+JOIN ST_valeur SV ON SP.id = SV.sect_id
+WHERE SV.annee = 2024);
+
+--ST25
+CREATE OR REPLACE VIEW ST25 AS (
+SELECT SP.nom nom,
+         SV.taux_croissance,
+         SV.annee
+FROM secteur_tertiaire SP
+JOIN ST_valeur SV ON SP.id = SV.sect_id
+WHERE SV.annee = 2025);
+WHERE SV.annee = 2025);  
+
+
