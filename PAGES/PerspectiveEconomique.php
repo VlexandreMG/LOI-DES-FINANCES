@@ -14,31 +14,54 @@ $secteur_tertiaire = get_secteur_tertiaire();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PerspectiveEconomique</title>
+    <link href = "../ASSETS/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <p>En 2025 , l'economie malgache devrait connaître une croissance de 5,0% , soutenue par des per-
-formances solides dans plusieurs
-secteurs stratégiques : </p>
+    <div class="container w-50 border">
+    <p class="fs-1 fw-bold">En 2025 , la croissance de l'economie malgache repose sur la performance de ces 3 secteurs : </p>
+    </div>
 
-    <h2>1 - L'agriculture :</h2>
-    <p>L'agricultue a augmenté d'une valeur de 9,5% en 2025 , 
+    <div class="container d-flex justify-content-between border border-0 mt-5 mb-5">
+
+    <div class="container w-25 border border-2 border-primary text-center">
+    <div>
+    <h2 class="text-primary fs-3 fw-semibold">1 - L'agriculture :</h2>
+    </div>
+    <div>
+    <p>L'agricultue a augmenté d'une valeur de 9,5% en 2025 .
     Maintenant un champ peut produire 8 tonnes de riz , 
 permettant de donner plus à manger pour le peuple et en vendre plus aux autres pays. </p>
+    </div>
+    </div>
 
-    <h2>2 - L'industrie extractive :</h2>
+    <div class="container w-25 border border-2 border-primary text-center">
+    <div>
+    <h2 class="text-primary fs-3 fw-semibold">2 - L'industrie extractive :</h2>
+    </div>
+    <div>
     <p>Les mines vont repartir à 4% en 2025 , 
         utilisé pour la production de batterie pour les voitures electriques et
         à l'exploitation d'énergie renouvelable. 
     </p>
+    </div>
+    </div>
 
-    <h2>3 - Le secteur tertiaire :</h2>
+    <div class="container w-25 border border-2 border-primary text-center" >
+    <div>
+    <h2 class="text-primary fs-3 fw-semibold">3 - Le secteur tertiaire :</h2>
+    </div>
+    <div>
     <p>Les services vont croître de 5,4% en 2025 , 
         visant à améliorer le secteur touristique et à developper les infrastructures numériques.
     </p>
-    <h2>Les grands agrégats macroéconomiques sont présentés dans le tableau
-ci-après :</h2>
-    <h2>Tableau 1 : Prévisions Macroéconomiques</h2>
-    <table border="1">
+    </div>
+    </div>
+
+    </div>
+
+    <h2 class="fs-1 fw-bold text-center mb-4">Les grands chiffres de l'economie :</h2>
+    <h2 class="text-center">Tableau 1 : Prévisions Macroéconomiques</h2>
+    <table class="table table-borderless table-sm">
         <tr>
         <th>AGREGATS MACROECONOMIQUES</th>
         <th>2024</th>
@@ -56,9 +79,9 @@ ci-après :</h2>
         <?php } ?>
     </table>
 
-    <h2>Tableau 2 : Taux de croissance sectorielle</h2>
+    <h2 class="text-center">Tableau 2 : Taux de croissance sectorielle</h2>
     <h3>Secteur Primaire</h3>
-    <table border="1">
+    <table  class="table table-borderless table-sm">
         <tr>
             <th>Variation en [%]</th>
             <th>2024</th>
@@ -74,7 +97,7 @@ ci-après :</h2>
     </table>
 
     <h3>Secteur Secondaire</h3>
-    <table border="1">
+    <table  class="table table-borderless table-sm">
         <tr>
             <th>Variation en [%]</th>
             <th>2024</th>
@@ -90,7 +113,7 @@ ci-après :</h2>
     </table>
 
     <h3>Secteur Tertiaire</h3>
-    <table border="1">
+    <table  class="table table-borderless table-sm">
         <tr>
             <th>Variation en [%]</th>
             <th>2024</th>
