@@ -1,0 +1,20 @@
+<?php
+ini_set("display_errors","1");
+
+    function connexion()
+    {
+        static $connect = null;
+
+        if ($connect === null) 
+        {
+            $connect = mysqli_connect('localhost', 'root', '', 'LOI_DES_FINANCES');
+
+            if (!$connect) 
+            {
+                die('Erreur de connexion à la base de données : ' . mysqli_connect_error());
+            }
+            mysqli_set_charset($connect, 'utf8mb4');
+        }
+        return $connect;
+    }
+?>

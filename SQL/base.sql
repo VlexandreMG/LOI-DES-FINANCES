@@ -615,6 +615,6 @@ SELECT SP.nom nom,
 FROM secteur_tertiaire SP
 JOIN ST_valeur SV ON SP.id = SV.sect_id
 WHERE SV.annee = 2025);
-WHERE SV.annee = 2025);  
+
 
 
