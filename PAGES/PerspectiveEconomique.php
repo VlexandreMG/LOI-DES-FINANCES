@@ -16,7 +16,28 @@ $secteur_tertiaire = get_secteur_tertiaire();
     <title>PerspectiveEconomique</title>
 </head>
 <body>
-    <h1>Tableau 1 : Prévisions Macroéconomiques</h1>
+    <p>En 2025 , l'economie malgache devrait connaître une croissance de 5,0% , soutenue par des per-
+formances solides dans plusieurs
+secteurs stratégiques : </p>
+
+    <h2>1 - L'agriculture :</h2>
+    <p>L'agricultue a augmenté d'une valeur de 9,5% en 2025 , 
+    Maintenant un champ peut produire 8 tonnes de riz , 
+permettant de donner plus à manger pour le peuple et en vendre plus aux autres pays. </p>
+
+    <h2>2 - L'industrie extractive :</h2>
+    <p>Les mines vont repartir à 4% en 2025 , 
+        utilisé pour la production de batterie pour les voitures electriques et
+        à l'exploitation d'énergie renouvelable. 
+    </p>
+
+    <h2>3 - Le secteur tertiaire :</h2>
+    <p>Les services vont croître de 5,4% en 2025 , 
+        visant à améliorer le secteur touristique et à developper les infrastructures numériques.
+    </p>
+    <h2>Les grands agrégats macroéconomiques sont présentés dans le tableau
+ci-après :</h2>
+    <h2>Tableau 1 : Prévisions Macroéconomiques</h2>
     <table border="1">
         <tr>
         <th>AGREGATS MACROECONOMIQUES</th>
@@ -35,8 +56,8 @@ $secteur_tertiaire = get_secteur_tertiaire();
         <?php } ?>
     </table>
 
-    <h1>Tableau 2 : Taux de croissance sectorielle</h1>
-    <h2>Secteur Primaire</h2>
+    <h2>Tableau 2 : Taux de croissance sectorielle</h2>
+    <h3>Secteur Primaire</h3>
     <table border="1">
         <tr>
             <th>Variation en [%]</th>
@@ -52,7 +73,7 @@ $secteur_tertiaire = get_secteur_tertiaire();
         <?php } ?>
     </table>
 
-    <h2>Secteur Secondaire</h2>
+    <h3>Secteur Secondaire</h3>
     <table border="1">
         <tr>
             <th>Variation en [%]</th>
@@ -68,7 +89,7 @@ $secteur_tertiaire = get_secteur_tertiaire();
         <?php } ?>
     </table>
 
-    <h2>Secteur Tertiaire</h2>
+    <h3>Secteur Tertiaire</h3>
     <table border="1">
         <tr>
             <th>Variation en [%]</th>
@@ -82,5 +103,7 @@ $secteur_tertiaire = get_secteur_tertiaire();
                 <td><?php echo $value['Taux_Croissance_2025']; ?></td>
             </tr>
         <?php } ?>
+    </table>
+    <p><a href="CoeurDuBudget.php">Retour</a></p>
 </body>
 </html>
