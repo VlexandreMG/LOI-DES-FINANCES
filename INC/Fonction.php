@@ -82,4 +82,24 @@ JOIN ST25 ON ST24.nom = ST25.nom;";
 
     return $secteur_primaire;
 }
+
+function get_rfi() {
+    $base = connexion();
+
+    $query = "SELECT rfi24.nom nature_impots,
+       rfi24.montant LFR2024,
+       rfi25.montant LFR2025
+    FROM rfi24 
+    JOIN rfi25 ON rfi24.nom = rfi25.nom;";
+
+    $result = mysqli_query($base,$query);
+
+    $secteur_primaire = array();
+
+    while ($row = mysqli_fetch_assoc($result)) {
+        $secteur_primaire[] = $row;
+    }
+
+    return $secteur_primaire;
+}
 ?>

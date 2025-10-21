@@ -616,5 +616,54 @@ FROM secteur_tertiaire SP
 JOIN ST_valeur SV ON SP.id = SV.sect_id
 WHERE SV.annee = 2025);
 
+--rfi_categorie
+CREATE OR REPLACE VIEW rfi_categorie AS (
+SELECT cr.nom categorie,
+       scr.nom nom,
+       cr.id cr_id,
+       scr.id scr_id
+FROM categories_recettes cr
+JOIN sous_categories_recettes scr ON cr.id = scr.categorie_id
+WHERE cr.nom = 'Recettes fiscales intérieures');
+
+--rfi24
+CREATE OR REPLACE VIEW rfi24 AS (
+SELECT
+       rc.nom,
+       pr.montant,
+       pr.annee
+FROM previsions_recettes pr
+JOIN rfi_categorie rc ON rc.scr_id = pr.sous_categorie_id
+WHERE pr.annee = 2024
+
+UNION 
+
+SELECT 
+       'TOTAL' nom,
+       SUM(pr.montant) montant,
+       2024 annee
+FROM previsions_recettes pr 
+JOIN rfi_categorie rc ON rc.scr_id = pr.sous_categorie_id
+WHERE pr.annee = 2024);
+
+--rfi25
+CREATE OR REPLACE VIEW rfi25 AS (
+SELECT
+       rc.nom,
+       pr.montant,
+       pr.annee
+FROM previsions_recettes pr
+JOIN rfi_categorie rc ON rc.scr_id = pr.sous_categorie_id
+WHERE pr.annee = 2025
+
+UNION 
+
+SELECT 
+       'TOTAL' nom,
+       SUM(pr.montant) montant,
+       2025 annee
+FROM previsions_recettes pr 
+JOIN rfi_categorie rc ON rc.scr_id = pr.sous_categorie_id
+WHERE pr.annee = 2025);
 
 

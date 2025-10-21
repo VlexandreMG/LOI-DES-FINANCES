@@ -1,4 +1,4 @@
 <?php 
-header("Location: PAGES/Divers.php");
+header("Location: PAGES/CoeurDuBudget.php");
 exit();
 ?>

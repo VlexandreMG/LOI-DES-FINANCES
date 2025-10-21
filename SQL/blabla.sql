@@ -26,3 +26,10 @@ SELECT ST24.nom AS Secteur,
        ST25.taux_croissance AS Taux_Croissance_2025
 FROM ST24
 JOIN ST25 ON ST24.nom = ST25.nom
+
+--Recette fiscale intérieurses.
+SELECT rfi24.nom nature_impots,
+       rfi24.montant LFR2024,
+       rfi25.montant LFR2025
+FROM rfi24 
+JOIN rfi25 ON rfi24.nom = rfi25.nom;
