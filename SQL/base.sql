@@ -715,3 +715,52 @@ SELECT
 FROM previsions_recettes pr 
 JOIN rd_categorie rc ON rc.scr_id = pr.sous_categorie_id
 WHERE pr.annee = 2025);
+
+CREATE OR REPLACE VIEW rnf_categorie AS (
+SELECT cr.nom categorie,
+       scr.nom nom,
+       cr.id cr_id,
+       scr.id scr_id
+FROM categories_recettes cr
+JOIN sous_categories_recettes scr ON cr.id = scr.categorie_id
+WHERE cr.nom = 'Recettes non fiscales');
+
+-- rnf24
+CREATE OR REPLACE VIEW rnf24 AS (
+SELECT
+       rc.nom,
+       pr.montant,
+       pr.annee
+FROM previsions_recettes pr
+JOIN rnf_categorie rc ON rc.scr_id = pr.sous_categorie_id
+WHERE pr.annee = 2024
+
+UNION 
+
+SELECT 
+       'TOTAL' nom,
+       SUM(pr.montant) montant,
+       2024 annee
+FROM previsions_recettes pr 
+JOIN rnf_categorie rc ON rc.scr_id = pr.sous_categorie_id
+WHERE pr.annee = 2024);
+
+-- rnf25
+CREATE OR REPLACE VIEW rnf25 AS (
+SELECT
+       rc.nom,
+       pr.montant,
+       pr.annee
+FROM previsions_recettes pr
+JOIN rnf_categorie rc ON rc.scr_id = pr.sous_categorie_id
+WHERE pr.annee = 2025
+
+UNION 
+
+SELECT 
+       'TOTAL' nom,
+       SUM(pr.montant) montant,
+       2025 annee
+FROM previsions_recettes pr 
+JOIN rnf_categorie rc ON rc.scr_id = pr.sous_categorie_id
+WHERE pr.annee = 2025);

@@ -1,7 +1,7 @@
 <?php
 ini_set("display_errors", "1"); 
 include('../INC/Fonction.php');
-$rd = get_rd();
+$rd = get_rnf();
 ?>
 
 <!DOCTYPE html>
@@ -14,14 +14,14 @@ $rd = get_rd();
 <body>
     <table>
         <tr>
-        <th>Recettes non fiscales</th>
+        <th>Nature des droits et taxes</th>
         <th>LFR 2024</th>
         <th>LFR 2025</th>
         </tr>
 
         <?php foreach ($rd as $value) { ?>
         <tr>
-            <td><?php echo $value['nature_droits_taxes'] ?></td>
+            <td><?php echo $value['nature_recettes'] ?></td>
             <td><?php echo $value['LFR2024'] ?></td>
             <td><?php echo $value['LFR2025']?></td>
         </tr>

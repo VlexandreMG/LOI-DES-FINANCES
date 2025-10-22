@@ -40,3 +40,10 @@ SELECT rd24.nom nature_droits_taxes,
        rd25.montant LFR2025
     FROM rd24 
     JOIN rd25 ON rd24.nom = rd25.nom;
+
+--Recette non fiscales
+SELECT rnf24.nom nature_recettes,
+       rnf24.montant LFR2024,
+       rnf25.montant LFR2025
+    FROM rnf24 
+    JOIN rnf25 ON rnf24.nom = rnf25.nom;

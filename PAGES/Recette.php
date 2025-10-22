@@ -16,8 +16,8 @@
     <a href="R-douaniere.php"><h2>Recettes douanières</h2>
     <p>L'argent que l'État gagne quand la marchandise sort et entre dans le pays.</p></a>
 
-    <h2>Recettes non fiscales</h2>
-    <p>L'argent que l'État gagne avec ses propres activités. </p>
+    <a href="R-non-fiscale.php"><h2>Recettes non fiscales</h2>
+    <p>L'argent que l'État gagne avec ses propres activités. </p></a>
 
     <h2>Dons</h2>
     <p>L'argent donné par les pays étrangers à Madagascar.</p>

@@ -122,4 +122,24 @@ function get_rd() {
 
     return $recettes_douanieres;
 }
+
+function get_rnf() {
+    $base = connexion();
+
+    $query = "SELECT rnf24.nom nature_recettes,
+       rnf24.montant LFR2024,
+       rnf25.montant LFR2025
+    FROM rnf24 
+    JOIN rnf25 ON rnf24.nom = rnf25.nom;";
+
+    $result = mysqli_query($base,$query);
+
+    $recettes_non_fiscales = array();
+
+    while ($row = mysqli_fetch_assoc($result)) {
+        $recettes_non_fiscales[] = $row;
+    }
+
+    return $recettes_non_fiscales;
+}
 ?>
