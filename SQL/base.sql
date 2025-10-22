@@ -764,3 +764,37 @@ SELECT
 FROM previsions_recettes pr 
 JOIN rnf_categorie rc ON rc.scr_id = pr.sous_categorie_id
 WHERE pr.annee = 2025);
+
+--CREATE OR REPLACE VIEW dons24 AS (
+SELECT 
+    sd.type_don,
+    sd.montant,
+    sd.annee
+FROM sources_dons sd
+WHERE sd.annee = 2024
+
+UNION 
+
+SELECT 
+    'TOTAL' type_don,
+    SUM(sd.montant) montant,
+    2024 annee
+FROM sources_dons sd
+WHERE sd.annee = 2024;
+
+CREATE OR REPLACE VIEW dons25 AS (
+SELECT 
+    sd.type_don,
+    sd.montant,
+    sd.annee
+FROM sources_dons sd
+WHERE sd.annee = 2025
+
+UNION 
+
+SELECT 
+    'TOTAL' type_don,
+    SUM(sd.montant) montant,
+    2025 annee
+FROM sources_dons sd
+WHERE sd.annee = 2025);

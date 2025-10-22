@@ -47,3 +47,10 @@ SELECT rnf24.nom nature_recettes,
        rnf25.montant LFR2025
     FROM rnf24 
     JOIN rnf25 ON rnf24.nom = rnf25.nom;
+
+--Dons
+SELECT dons24.type_don,
+       dons24.montant LFR2024,
+       dons25.montant LFR2025
+FROM dons24 
+JOIN dons25 ON dons24.type_don = dons25.type_don;

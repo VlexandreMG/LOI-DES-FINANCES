@@ -142,4 +142,23 @@ function get_rnf() {
 
     return $recettes_non_fiscales;
 }
-?>
+
+function get_dons() {
+    $base = connexion();
+
+    $query = "SELECT dons24.type_don,
+       dons24.montant LFR2024,
+       dons25.montant LFR2025
+    FROM dons24 
+    JOIN dons25 ON dons24.type_don = dons25.type_don;";
+
+    $result = mysqli_query($base,$query);
+
+    $dons = array();
+
+    while ($row = mysqli_fetch_assoc($result)) {
+        $dons[] = $row;
+    }
+
+    return $dons;
+}
