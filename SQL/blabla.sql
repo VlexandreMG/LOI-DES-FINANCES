@@ -33,3 +33,10 @@ SELECT rfi24.nom nature_impots,
        rfi25.montant LFR2025
 FROM rfi24 
 JOIN rfi25 ON rfi24.nom = rfi25.nom;
+
+--Recette douanières
+SELECT rd24.nom nature_droits_taxes,
+       rd24.montant LFR2024,
+       rd25.montant LFR2025
+    FROM rd24 
+    JOIN rd25 ON rd24.nom = rd25.nom;

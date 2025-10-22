@@ -13,8 +13,8 @@
     <a href="R-fiscale.php"><h2>Recettes fiscales intérieures</h2>
     <p>L'argent que les gens et les entreprises donne à l'État.</p></a>
 
-    <h2>Recettes douanières</h2>
-    <p>L'argent que l'État gagne quand la marchandise sort et entre dans le pays.</p>
+    <a href="R-douaniere.php"><h2>Recettes douanières</h2>
+    <p>L'argent que l'État gagne quand la marchandise sort et entre dans le pays.</p></a>
 
     <h2>Recettes non fiscales</h2>
     <p>L'argent que l'État gagne avec ses propres activités. </p>

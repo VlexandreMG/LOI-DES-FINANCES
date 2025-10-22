@@ -102,4 +102,24 @@ function get_rfi() {
 
     return $secteur_primaire;
 }
+
+function get_rd() {
+    $base = connexion();
+
+    $query = "SELECT rd24.nom nature_droits_taxes,
+       rd24.montant LFR2024,
+       rd25.montant LFR2025
+    FROM rd24 
+    JOIN rd25 ON rd24.nom = rd25.nom;";
+
+    $result = mysqli_query($base,$query);
+
+    $recettes_douanieres = array();
+
+    while ($row = mysqli_fetch_assoc($result)) {
+        $recettes_douanieres[] = $row;
+    }
+
+    return $recettes_douanieres;
+}
 ?>
