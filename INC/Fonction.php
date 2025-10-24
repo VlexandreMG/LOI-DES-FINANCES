@@ -162,3 +162,28 @@ function get_dons() {
 
     return $dons;
 }
+
+function get_total_recettes($categorie_nom, $annee) {
+    $base = connexion();
+    $categorie_nom = mysqli_real_escape_string($base, $categorie_nom);
+    $annee = mysqli_real_escape_string($base, $annee);
+    
+    $query = "
+    SELECT 
+        'TOTAL' as nom,
+        SUM(pr.montant) as montant,
+        $annee as annee
+    FROM previsions_recettes pr 
+    JOIN sous_categories_recettes scr ON pr.sous_categorie_id = scr.id
+    JOIN categories_recettes cr ON scr.categorie_id = cr.id
+    WHERE cr.nom = '$categorie_nom' AND pr.annee = $annee
+    ";
+    
+    $result = mysqli_query($base, $query);
+    $row = mysqli_fetch_assoc($result);
+    
+    return $row['montant'];
+}
+
+
+?>
