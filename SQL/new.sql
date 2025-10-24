@@ -1,10 +1,16 @@
-CREATE DATABASE LOI_DES_FINANCES;
-USE LOI_DES_FINANCES;
-
---CREATION DE TABLES-- 
-
---PREVISION MACROECONOMIQUES
-
+CREATE DATABASE loi;
+use loi;
+CREATE TABLE themes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(150) NOT NULL
+    
+);
+CREATE TABLE types (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    theme_id INT,
+    nom VARCHAR(150) NOT NULL,
+    FOREIGN KEY (theme_id) REFERENCES themes(id)
+);
 CREATE TABLE indicateurs_macroeconomiques (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nom VARCHAR(255) NOT NULL,
@@ -162,19 +168,6 @@ CREATE TABLE financement_deficit (
     montant DECIMAL(15,1)
 );
 
---ACRONYMES
-CREATE TABLE acronymes (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    acronymes VARCHAR(20) NOT NULL UNIQUE,
-    signification TEXT NOT NULL
-);
-
---GLOSSAIRES
-CREATE TABLE glossaire (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    terme VARCHAR(100) NOT NULL UNIQUE,
-    definition TEXT NOT NULL
-);
 CREATE TABLE depenses_ivestissement(
     id INT AUTO_INCREMENT PRIMARY KEY,
     type_investissement VARCHAR(100),
@@ -183,6 +176,27 @@ CREATE TABLE depenses_ivestissement(
 );
 --INSERTION DE DONNEES--
 
+INSERT INTO themes(nom) VALUES
+('Perspectives economiques'),
+('Recettes'),('Depenses'),('Deficit');
+
+INSERT INTO types(theme_id, nom) VALUES
+(1,'Previsons macroeconomiques'),(1,'Taux de croissances sectorielle'),
+(1,'Evolution des croissances sectorielle'),
+(2,'Recette totales de l''Etat '),
+(2,'Recettes fiscales interieures'),
+(2,'Recettes douanieres'),
+(2,'Evolution des recettes fiscales et douaniers'),
+(2,'Recettes Non Fiscales'),
+(2,'Composition des Dons'),
+(3,'Ventilation des depenses par rubrique'),
+(3,'Evolution des depenses de soldes'),
+(3,'Postes budgetaires autorisees pour 2025'),
+(3,'Depenses de fonctionnement des administrations publiques'),
+(3,'Depenses d''investissement'),
+(3,'Repatition des depenses sleon leur rattachement administratif'),
+(4,'Prevision du deficit budgetaire'),
+(4,'Financement du deficit');
 
 INSERT INTO depenses_ivestissement(type_investissement, annee, montant) VALUES
 ('PIP interne','2024','1254.8'),
@@ -705,3 +719,4 @@ AS(
     JOIN depenses_fonctionnement_2025 AS D25 ON 
     D24.type_depense = D25.type_depense
 );
+

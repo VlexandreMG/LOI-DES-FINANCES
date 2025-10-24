@@ -1,3 +1,9 @@
+<?php 
+    include('../INC/Fonction.php');
+    $stmt = get_theme();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,11 +13,14 @@
 </head>
 <body>
 
-    <ul>
-        <li><a href="Divers.php">DIVERS</a></li>
-        <li><a href="CoeurDuBudget.php">COEUR DU BUDGET</a></li>
-        <li><a href="Fonctionnalite.php">FONCTIONNALITÉ</a></li>
-    </ul>
+   <ul>
+    <?php 
+    foreach ($stmt as $row) {?>
+        <li><a href="types.php?theme_no=<?php echo $row['id'];?>"><?php echo $row['nom'];?></a></li>
+    <?php   }
+    ?>
+
+   </ul>
     
 </body>
 </html>

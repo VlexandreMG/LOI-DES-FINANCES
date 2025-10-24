@@ -25,4 +25,26 @@ SELECT ST24.nom AS Secteur,
        ST24.taux_croissance AS Taux_Croissance_2024, 
        ST25.taux_croissance AS Taux_Croissance_2025
 FROM ST24
-JOIN ST25 ON ST24.nom = ST25.nom
+JOIN ST25 ON ST24.nom = ST25.nom;
+
+SELECT 
+cat.nom,prev.annee,prev.montant
+FROM categories_depenses AS cat JOIN previsions_depenses AS prev
+ON cat.id=prev.categorie_id; 
+
+SELECT 
+R24.nom ,R24.montant AS LFR2024,R25.montant AS LFR2025
+FROM depenses_rubrique_24 as R24 JOIN
+depenses_rubrique_25 as R25 ON R24.nom=R25.nom  ;
+
+SELECT SUM(dep.LFR2024) AS total2024,SUM(dep.LFR2025) AS total2025
+FROM 
+depenses_rubrique AS dep;
+
+SELECT * FROM depenses_soldes_detail WHERE annee='2024';
+
+SELECT SUM(montant) as total FROM  depenses_fonctionnement_2024;
+SELECT * FROM depenses_ivestissement WHERE annee='2024';
+SELECT * FROM depenses_ivestissement WHERE annee='2025';
+
+SELECT * FROM deficit_budgetaire;
