@@ -1,0 +1,5 @@
+pour la fonction indemnites il y a des problemes 
+le mysql ne prends pas les accents
+Atao tableau le depenses d'investissement
+Amboarina ilay tableau depenses_soldes_detail
+Tsy ampy ilay information momba anle ministere
