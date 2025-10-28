@@ -54,3 +54,6 @@ SELECT dons24.type_don,
        dons25.montant LFR2025
 FROM dons24 
 JOIN dons25 ON dons24.type_don = dons25.type_don;
+
+    SELECT * FROM depenses_ivestissement WHERE annee='2024'
+
